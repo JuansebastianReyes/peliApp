@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <!--Aqui va la Tabla-->
+      <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Calificación</th>
+              <th scope="col">Pais</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let movie of movies, index as i" (click)="getPelicula(i)">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{movie.nombre}}</td>
+              <td>{{movie.quali}}</td>
+              <td>{{movie.pais}}</td>
+            </tr>
+          </tbody>
+      </table>
+        <button (click)="getPeliculas()" type="button" class="btn btn-outline-dark">
+          Traer Datos
+        </button>
+    </div>
+    <div class="col-md-4">
+      <!--CARD ingresar datos -->
+      <div class="card border-dark">
+        <div class="card-header bg-dark text-white">
+          Modificar Pelicula
+        </div>
+        <div class="card-body text-dark">
+          <div class="form-group">
+            <label>Nombre: </label>
+            <input [(ngModel)]="movie.nombre" name="nombre" type="text" class="form-control" name="name" placeholder="Nombre de la Pelicula" required>
+          </div>
+          <div class="form-group">
+            <label>Calidicación: </label>
+            <input [(ngModel)]="movie.quali"  name="cali" type="text" class="form-control"  placeholder="Calidicación de la Pelicula">
+          </div>
+          <div class="form-group">
+            <label>País: </label>
+            <input [(ngModel)]="movie.pais" name="pais" type="text" class="form-control" placeholder="País de la Pelicula">
+          </div>
+          <div class="form-group">
+            <button  (click)="editar()" type="button" class="btn btn-outline-dark">
+              Enviar
+            </button>
+            <button  type="button" class="btn btn-outline-danger">
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--*ngFor="let item of lista"-->
