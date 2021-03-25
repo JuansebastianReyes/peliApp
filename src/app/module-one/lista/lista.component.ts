@@ -24,7 +24,7 @@ export class ListaComponent implements OnInit {
 
   getPeliculas(){
     this._peliculasServise.getPeliculas()
-    .subscribe(peli => this.movies = peli
+    .subscribe(peli => this.movies = peli.splice(1,2)
   );}
 
   getPelicula(id:number){
