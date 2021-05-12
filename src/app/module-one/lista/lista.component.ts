@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pelicula } from '../../interfaces/pelicula.interface';
 import { ToastrService } from 'ngx-toastr';
 import { PeliculasServise } from '../../servicios/peliculas.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista',
@@ -11,7 +12,7 @@ export class ListaComponent implements OnInit {
 
   movies:Pelicula[]=[];
 
-  constructor(private _peliculasServise:PeliculasServise, private toastr :ToastrService ) { }
+  constructor(private _peliculasServise:PeliculasServise, private toastr :ToastrService, private router: Router) { }
 
   ngOnInit(): void {
     this.getPeliculas();
@@ -21,7 +22,7 @@ export class ListaComponent implements OnInit {
     this._peliculasServise.getPeliculas()
     .subscribe(peli =>{
       this.movies = peli;
-      console.log(typeof(this.movies[2].ID));
+      console.log(peli);
     });
   }
 
@@ -33,6 +34,6 @@ export class ListaComponent implements OnInit {
       this.getPeliculas();
     });
     this.toastr.error('El producto Fue eliminado con exito!!','Producto Eliminado')
-    this.getPeliculas();
+    this.router.navigate(['/']);
   }
 }
