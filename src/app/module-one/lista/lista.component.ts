@@ -21,16 +21,18 @@ export class ListaComponent implements OnInit {
     this._peliculasServise.getPeliculas()
     .subscribe(peli =>{
       this.movies = peli;
-      console.log(this.movies);
+      console.log(typeof(this.movies[2].ID));
     });
   }
 
 
   eliminarPelicula(id:number){
     this._peliculasServise.eliminarPelicula(id)
-    .subscribe((data)=>{
+    .subscribe(data => {
       this.toastr.error('El producto Fue eliminado con exito!!','Producto Eliminado')
       this.getPeliculas();
     });
+    this.toastr.error('El producto Fue eliminado con exito!!','Producto Eliminado')
+    this.getPeliculas();
   }
 }

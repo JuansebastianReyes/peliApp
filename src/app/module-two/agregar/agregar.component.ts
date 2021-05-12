@@ -19,11 +19,6 @@ export class AgregarComponent implements OnInit {
   titulo='Agregar Pelicula';
   id: string | null;
 
-  movie:Pelicula={   Name:" ",
-                     Contry:" ",
-                     Rating:""
-                    };
-
   constructor(private _peliculasServise:PeliculasServise, private fb: FormBuilder, private router: Router,
                private toastr: ToastrService, private aRouter: ActivatedRoute) {
     this.peliculaForm = this.fb.group({
@@ -45,6 +40,7 @@ export class AgregarComponent implements OnInit {
       Rating: this.peliculaForm.get('Rating')?.value
     }
     if(this.id !== null){
+      console.log(MOVIE.ID);
       this._peliculasServise.actializarPelicula(Number(this.id),MOVIE)
       .subscribe(data =>{
         this.toastr.info('La pelicula fue actualizada con exito!', 'Pelicula Acrualizado!');
@@ -53,6 +49,8 @@ export class AgregarComponent implements OnInit {
         console.log(error)
         this.peliculaForm.reset();
       }
+      this.toastr.info('La pelicula fue actualizada con exito!', 'Pelicula Acrualizado!');
+      this.router.navigate(['/modulo1/lista']);
     }else{
       console.log(MOVIE);
       this._peliculasServise.agrearPeliculas(MOVIE)
