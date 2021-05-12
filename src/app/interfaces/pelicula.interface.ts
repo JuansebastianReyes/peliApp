@@ -1,6 +1,6 @@
 export interface Pelicula {
-  nombre:string;
-  quali:string;
-  pais:string;
-  key$?:string;
+  ID?:number;
+  Name:string;
+  Contry:string;
+  Rating:string;
 }

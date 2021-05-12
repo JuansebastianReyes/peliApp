@@ -6,6 +6,7 @@ import { AgregarComponent } from './agregar/agregar.component';
 
 const routes: Routes = [
   { path:'top', component:TopComponent },
+  { path:'editar/:id', component:AgregarComponent },
   { path:'agregar', component:AgregarComponent }
 
 ];

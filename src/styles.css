@@ -10,6 +10,16 @@ body{
 
 }
 
+.titulo{
+  font-size: 1.8rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+i{
+  cursor: pointer;
+}
+
+
 img{
   border-radius: 5px;
 }

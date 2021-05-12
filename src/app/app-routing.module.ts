@@ -11,10 +11,6 @@ const routes: Routes = [
       import('./module-one/module-one.module').then(m => m.ModuleOneModule)
   },
   {
-    path: `modulo1`, loadChildren: () =>
-      import('./module-one/module-one.module').then(m => m.ModuleOneModule)
-  },
-  {
     path: `modulo2`, loadChildren: () =>
       import('./module-two/module-two.module').then(m => m.ModuleTwoModule)
   },

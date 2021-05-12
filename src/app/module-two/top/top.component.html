@@ -1,33 +1,29 @@
-<div class="col-md-8">
-  <!--Aqui va la Tabla-->
-    <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Calificación</th>
-            <th scope="col">Pais</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
+<div class="container">
+  <div class="titulo text-center">
+    <h3>Top Peliculas</h3>
+  </div>
+  <div class="table-responsive">
+    <table *ngIf="movies.length > 0" class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Pais</th>
+          <th scope="col">Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let peli of movies">
+          <td>{{ peli.Name }}</td>
+          <td>{{ peli.Contry }}</td>
+          <td>{{ peli.Rating }}</td>
+        </tr>
+      </tbody>
     </table>
+  </div>
+  <div *ngIf="movies.length == 0" class="card text-white bg-dark">
+    <div class="card-body text-center">
+      <h5> No hay peliculas por mostrar </h5>
+      <button type="button" class="btn btn-success" routerLink="/modulo2/agregar">Nuevo</button>
+    </div>
+  </div>
 </div>

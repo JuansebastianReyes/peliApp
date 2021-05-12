@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Pelicula } from '../../interfaces/pelicula.interface';
+import { ToastrService } from 'ngx-toastr';
 import { PeliculasServise } from '../../servicios/peliculas.service';
 
 @Component({
@@ -11,46 +11,26 @@ export class ListaComponent implements OnInit {
 
   movies:Pelicula[]=[];
 
-  movie:Pelicula={nombre:" ",
-                     quali:" ",
-                     pais:" "
-                    };
-
-  constructor(private _peliculasServise:PeliculasServise ) { }
+  constructor(private _peliculasServise:PeliculasServise, private toastr :ToastrService ) { }
 
   ngOnInit(): void {
-
+    this.getPeliculas();
   }
 
   getPeliculas(){
     this._peliculasServise.getPeliculas()
-    .subscribe(peli => this.movies = peli.splice(1,2)
-  );}
-
-  getPelicula(id:number){
-    this._peliculasServise.getPelicula(id + 1)
-    .subscribe(peli => this.movie = peli
-    );}
-
-  openEdit(peli:Pelicula){
-    this.movie = peli;
+    .subscribe(peli =>{
+      this.movies = peli;
+      console.log(this.movies);
+    });
   }
 
-  editar(){
-    console.log(this.movie);
-    alert("Su dato a sido cargado exitosamente");
-  }
-
-  editarPelicula(movie:Pelicula){
-    this._peliculasServise.actializarPelicula(movie)
-    .subscribe(peli =>{alert("Su dato a sido cargado exitosamente");
-    })
-  }
 
   eliminarPelicula(id:number){
     this._peliculasServise.eliminarPelicula(id)
     .subscribe((data)=>{
-      alert("Se haa elininado el registro");
+      this.toastr.error('El producto Fue eliminado con exito!!','Producto Eliminado')
+      this.getPeliculas();
     });
   }
 }

@@ -1,26 +1,41 @@
-<div class="card border-dark">
-  <div class="card-header bg-dark text-white">
-    Agregar Pelicula
-  </div>
-  <form>
-    <div class="card-body text-dark">
-      <div class="form-group">
-        <label>Nombre: </label>
-        <input [(ngModel)]="movie.nombre" name="nombre" type="text" class="form-control" name="name" placeholder="Nombre de la Pelicula" required>
-      </div>
-      <div class="form-group">
-        <label>Calidicación: </label>
-        <input [(ngModel)]="movie.quali"  name="quali" type="text" class="form-control"  placeholder="Calidicación de la Pelicula">
-      </div>
-      <div class="form-group">
-        <label>País: </label>
-        <input [(ngModel)]="movie.pais" name="pais" type="text" class="form-control" placeholder="País de la Pelicula">
-      </div>
-      <div class="form-group">
-        <button (click)=guardar() type="button" class="btn btn-outline-dark">
-          Enviar
-        </button>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-6 offset-lg-3">
+      <div class="card border-dark">
+        <div class="card-header bg-dark text-white text-center">
+          {{titulo}}
+        </div>
+        <form [formGroup]="peliculaForm" (ngSubmit)="agregarPelicula()">
+          <div class="card-body text-dark">
+            <div class="form-group">
+              <input type="text" formControlName="Name" class="form-control form-control-lg" placeholder="Nombre">
+              <div class="text-danger" *ngIf="peliculaForm.get('Name').hasError('required') && peliculaForm.get('Name').touched" >
+                <span>El Nombre del la pelicula es <strong>Obligatorio</strong></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" formControlName="Contry" class="form-control form-control-lg" placeholder="País">
+              <div class="text-danger" *ngIf="peliculaForm.get('Contry').hasError('required') && peliculaForm.get('Contry').touched" >
+                <span>El país del la pelicula es <strong>Obligatorio</strong></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" formControlName="Rating"class="form-control form-control-lg"  placeholder="Calificación">
+              <div class="text-danger" *ngIf="peliculaForm.get('Rating').hasError('required') && peliculaForm.get('Rating').touched" >
+                <span>La calificación del la pelicula es <strong>Obligatoria</strong></span>
+              </div>
+            </div>
+            <div>
+              <button type="submit" [disabled]="peliculaForm.invalid" class="btn btn-primary btn-lg mb-3 float-right">
+                Enviar
+              </button>
+              <button routerLink="/modulo1/lista" type="button" class="btn btn-danger btn-lg mb-3 float-left">
+                Lista
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-  </form>
+  </div>
 </div>
